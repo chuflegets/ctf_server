@@ -1,0 +1,16 @@
+#!/bin/bash
+virtualenv_dir=$PWD/venv
+activation_path=$PWD/venv/bin/activate
+requirements=$PWD/requirements.txt
+uwsgi_config=$PWD/ctf.ini
+if [[ ! -d $virtualenv_dir ]]
+then
+    python3 -m virtualenv $virtualenv_dir
+    source $activation_path
+    pip install -r $requirements
+    deactivate
+fi
+
+source $activation_path
+uwsgi --ini $uwsgi_config
+deactivate
