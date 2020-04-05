@@ -11,5 +11,5 @@ then
 fi
 
 source $activation_path
-ctf --host 127.0.0.1 --port 1337
+$PWD/ctf.py -H 127.0.0.1 -P 1337
 deactivate
