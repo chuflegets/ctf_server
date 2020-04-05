@@ -1,16 +1,15 @@
 #!/bin/bash
-virtualenv_dir=$PWD/venv
+venv_dir=$PWD/venv
 activation_path=$PWD/venv/bin/activate
 requirements=$PWD/requirements.txt
-uwsgi_config=$PWD/ctf.ini
 if [[ ! -d $virtualenv_dir ]]
 then
-    python3 -m virtualenv $virtualenv_dir
+    python3 -m virtualenv $venv_dir
     source $activation_path
     pip install -r $requirements
     deactivate
 fi
 
 source $activation_path
-uwsgi --ini $uwsgi_config
+ctf --host 127.0.0.1 --port 1337
 deactivate
